@@ -4,8 +4,8 @@ const ctx = canvas.getContext("2d")
 let ball_start = false
 
 //Paddle Stats
-let player_Paddle_Height = 120
-let opponent_Paddle_Height = 100
+let player_Paddle_Height = 1200
+let opponent_Paddle_Height = 12g0
 canvas.height = window.innerHeight - 100
 canvas.width = window.innerWidth - 100
 
@@ -51,7 +51,7 @@ class Computer_Paddle {
             score: 0
         }
         this.width = 20
-        this.height = player_Paddle_Height
+        this.height = opponent_Paddle_Height
     }
 
     draw() {
@@ -99,6 +99,8 @@ let gains = 10
 function resetball() {
     ball.position.x = canvas.width / 2;
     ball.position.y = canvas.height / 2;
+
+    gains = 10
 }
 
 // function testMove(){
