@@ -50,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <div class="login-box">
         <form method="post">
             <div class="except"><h2>Login</h2></div>
-
             <label for="username">Username</label>
             <input id="username" type="text" name="username"><br><br>
             <label for="password">Password</label>

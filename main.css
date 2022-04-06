@@ -1,8 +1,10 @@
 body{
-
+margin: 0;
+    background-color: darkgray;
 }
 .log-uit{
     float: right;
+    margin-right: 20px;
     font-weight: bolder;
     font-size: 40px;
 }
@@ -13,11 +15,13 @@ body{
     font-family: fantasy;
 }
 
-button{
+button {
     border-radius: 40px;
     padding: 40px 150px;
-    margin-left: 300px;
+    margin-left: 275px;
     margin-top: 375px;
+    border: 5px solid black;
+    background-color: grey;
 }
 
 button a{
@@ -26,15 +30,21 @@ button a{
     color: black;
     font-weight: bolder;
     font-family: fantasy;
+    letter-spacing: 5px;
 }
 
 button a:hover{
     transition: color 1s;
-    color: darkgrey;
+    color: white;
 }
 
 .login{
     text-align: center;
     margin-top: 300px;
     font-size: 20px;
+    text-decoration: none;
+}
+
+.login a{
+    text-decoration: none;
 }
