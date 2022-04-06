@@ -5,7 +5,7 @@ let ball_start = false
 
 //Paddle Stats
 let player_Paddle_Height = 1200
-let opponent_Paddle_Height = 12g0
+let opponent_Paddle_Height = 120
 canvas.height = window.innerHeight - 100
 canvas.width = window.innerWidth - 100
 
