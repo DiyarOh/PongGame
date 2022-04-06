@@ -3,9 +3,10 @@ const canvas = document.getElementById("game")
 const ctx = canvas.getContext("2d")
 let ball_start = false
 
+
 //Paddle Stats
 let player_Paddle_Height = 120
-let opponent_Paddle_Height = 100
+let opponent_Paddle_Height = 120
 canvas.height = window.innerHeight - 100
 canvas.width = window.innerWidth - 100
 
@@ -18,7 +19,7 @@ class Player_Paddle {
         }
         this.velocity = {
             x: 10,
-            y: 50
+            y: 0
         }
         this.score = {
             score: 0
@@ -45,19 +46,20 @@ class Computer_Paddle {
         }
         this.velocity = {
             x: 10,
-            y: 20
+            y: 0
         }
         this.score = {
             score: 0
         }
         this.width = 20
-        this.height = player_Paddle_Height
+        this.height = opponent_Paddle_Height
     }
 
     draw() {
         ctx.fillStyle = "black"
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
+
 
     update() {
         this.draw()
@@ -72,8 +74,8 @@ class Ball {
         }
 
         this.velocity = {
-            x: 2,
-            y: 7.5
+            x: 10,
+            y: 10
         }
         this.height = 30
         this.width = 30
@@ -86,29 +88,56 @@ class Ball {
         drawtext(computer.score.score, 3 * canvas.width / 4, canvas.height / 5, "BLACK")
     }
 
+    draw2() {
+        ctx.fillStyle = "transparent"
+        ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+    }
+
 
 }
 
-// function computerMove() {
-//     let number = 2
-//     computer.position.y = ball.position.y + number
-//     console.log(number)
-//
-// }
 
+//Computer paddle movement
+function computerMove() {
+    computer.position.y = compBall.position.y
+}
+
+//Adds to the y to make the A.I lose
+let gains = 10
+
+// After scored
 function resetball() {
     ball.position.x = canvas.width / 2;
     ball.position.y = canvas.height / 2;
+
+    gains = 10
 }
-//
-// function testMove(){
-//     player.position.y = ball.position.y + 4
-// }
+
+function resetpaddle() {
+    player.position.y = canvas.height / 2;
+    computer.position.y = canvas.height / 2;
+}
+
+
+// Incase testing is neccessary lets player paddle move to win
+function testMove() {
+    player.position.y = ball.position.y - 4
+}
+
+
+//The ball that the computer follows (To make winning possible)
+function compBallMove() {
+    compBall.position.y = ball.position.y + gains
+
+}
+
+//This is the ball movement.
 
 function ballMove() {
     ball.position.x = ball.position.x - ball.velocity.x
     ball.position.y = ball.position.y - ball.velocity.y
     if (ball.position.x <= canvas.width - canvas.width) {
+        resetpaddle();
         resetball()
         computer.score.score++
         ball_start = false
@@ -116,11 +145,14 @@ function ballMove() {
         resetball()
         player.score.score++
         ball_start = false
+        document.getElementById("scoreset").value = player.score.score
+
     } else if (player.position.x + player.width >= ball.position.x &&
         player.position.x <= ball.position.x + ball.width &&
         player.position.y + player.height >= ball.position.y &&
         player.position.y <= ball.position.y + ball.height) {
         ball.velocity.x = -10
+        gains = gains + 0.5
     } else if (ball.position.y >= canvas.height) {
         ball.velocity.y = 7.5
     } else if (ball.position.y <= canvas.height - canvas.height) {
@@ -133,11 +165,13 @@ function ballMove() {
     }
 }
 
+//Score count
 function drawtext(text, x, y, color) {
     ctx.fillStyle = color;
     ctx.font = "80px fantasy";
     ctx.fillText(text, x, y,);
 }
+
 
 function game_loop() {
     requestAnimationFrame(game_loop)
@@ -145,41 +179,58 @@ function game_loop() {
     player.update()
     ball.draw()
     computer.update()
+    newMovementFunction()
     if (ball_start === true) {
         ballMove()
     }
-    document.addEventListener('keydown', function (event){
-        if (event.keyCode === 32){
+    document.addEventListener('keydown', function (event) {
+        if (event.keyCode === 32) {
             ball_start = true
         }
     })
+
+    // testMove()
 }
 
+//Creation of all components
 const player = new Player_Paddle()
 const ball = new Ball()
 const computer = new Computer_Paddle()
 
+//Smoother paddle movements for multiplayer only
+function newMovementFunction() {
+    player.position.y = player.position.y + player.velocity.y
+    computer.position.y = computer.position.y + computer.velocity.y
 
-game_loop()
-// Paddle Movement
+    if (computer.position.y >= canvas.height - 100 || computer.position.y <= canvas.height - canvas.height){
+        computer.velocity.y = 0
+    }
+    if (player.position.y >= canvas.height - 100 || player.position.y <= canvas.height - canvas.height){
+        player.velocity.y = 0
+    }
+}
+
+
+// Paddle Movement by keybinds
 document.addEventListener('keydown', function (event) {
     if (event.keyCode === 40) {
         if (parseInt(player.position.y) < canvas.height - 100) {
-            player.position.y = player.position.y + player.velocity.y;
+            player.velocity.y = 10
         }
 
     } else if (event.keyCode === 38) {
         if (parseInt(player.position.y) > 0) {
-            player.position.y = player.position.y - player.velocity.y;
+            player.velocity.y = -10
         }
     } else if (event.keyCode === 83) {
         if (parseInt(computer.position.y) < canvas.height - 100) {
-            computer.position.y = computer.position.y + computer.velocity.y;
+            computer.velocity.y = 10
         }
 
     } else if (event.keyCode === 87) {
         if (parseInt(computer.position.y) > 0) {
-            computer.position.y = computer.position.y - computer.velocity.y;
+            computer.velocity.y = -10
         }
     }
 });
+game_loop()
