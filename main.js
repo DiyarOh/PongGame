@@ -60,6 +60,8 @@ class Computer_Paddle {
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
+
+
     update() {
         this.draw()
     }
@@ -84,6 +86,10 @@ class Ball {
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
         drawtext(player.score.score, canvas.width / 4, canvas.height / 5, "BLACK")
         drawtext(computer.score.score, 3 * canvas.width / 4, canvas.height / 5, "BLACK")
+    }
+    draw2() {
+        ctx.fillStyle = "transparent"
+        ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
 
@@ -170,7 +176,7 @@ function game_loop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     player.update()
     ball.draw()
-    compBall.draw()
+    compBall.draw2()
     computer.update()
     computerMove()
     compBallMove()
