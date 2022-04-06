@@ -141,7 +141,6 @@ function drawtext(text, x, y, color) {
 
 function game_loop() {
     requestAnimationFrame(game_loop)
-
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     player.update()
     ball.draw()
@@ -149,16 +148,11 @@ function game_loop() {
     if (ball_start === true) {
         ballMove()
     }
-
     document.addEventListener('keydown', function (event){
         if (event.keyCode === 32){
             ball_start = true
         }
     })
-    // computerMove()
-
-
-    // testMove()
 }
 
 const player = new Player_Paddle()

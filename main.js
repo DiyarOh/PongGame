@@ -3,6 +3,7 @@ const canvas = document.getElementById("game")
 const ctx = canvas.getContext("2d")
 let ball_start = false
 
+
 //Paddle Stats
 let player_Paddle_Height = 120
 let opponent_Paddle_Height = 120
@@ -63,7 +64,6 @@ class Computer_Paddle {
         this.draw()
     }
 }
-
 class Ball {
     constructor() {
         this.position = {
@@ -89,33 +89,42 @@ class Ball {
 
 }
 
+
+//Computer paddle movement
 function computerMove() {
-
     computer.position.y = compBall.position.y
-
 }
 
+//Adds to the y to make the A.I lose
 let gains = 10
+
+// After scored
 function resetball() {
     ball.position.x = canvas.width / 2;
     ball.position.y = canvas.height / 2;
 
     gains = 10
 }
-
-function resetpaddle(){
-    player.position.y = canvas.height/2;
-    computer.position.y = canvas.height/2;
+function resetpaddle() {
+    player.position.y = canvas.height / 2;
+    computer.position.y = canvas.height / 2;
 }
 
-// function testMove(){
-//     player.position.y = ball.position.y - 4
-// }
 
+// Incase testing is neccessary lets player paddle move to win
+function testMove(){
+    player.position.y = ball.position.y - 4
+}
+
+
+//The ball that the computer follows (To make winning possible)
 function compBallMove() {
     compBall.position.y = ball.position.y + gains
 
 }
+
+//This is the ball movement.
+
 function ballMove() {
     ball.position.x = ball.position.x - ball.velocity.x
     ball.position.y = ball.position.y - ball.velocity.y
@@ -128,6 +137,7 @@ function ballMove() {
         resetball()
         player.score.score++
         ball_start = false
+        document.getElementById("scoreset").value = player.score.score
 
     } else if (player.position.x + player.width >= ball.position.x &&
         player.position.x <= ball.position.x + ball.width &&
@@ -147,48 +157,46 @@ function ballMove() {
     }
 }
 
-
+//Score count
 function drawtext(text, x, y, color) {
     ctx.fillStyle = color;
     ctx.font = "80px fantasy";
     ctx.fillText(text, x, y,);
 }
 
+
 function game_loop() {
     requestAnimationFrame(game_loop)
-
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     player.update()
     ball.draw()
     compBall.draw()
     computer.update()
+    computerMove()
+    compBallMove()
     if (ball_start === true) {
         ballMove()
     }
-
-    document.addEventListener('keydown', function (event){
-        if (event.keyCode === 32){
+    document.addEventListener('keydown', function (event) {
+        if (event.keyCode === 32) {
             ball_start = true
         }
     })
-    computerMove()
-    compBallMove()
 
     // testMove()
 }
-
+//Creation of all components
 const player = new Player_Paddle()
 const ball = new Ball()
 const compBall = new Ball()
 const computer = new Computer_Paddle()
-
-
 compBall.velocity.x = 3
 compBall.velocity.y = 8.5
 
 
+
 game_loop()
-// Paddle Movement
+// Paddle Movement by keybinds
 document.addEventListener('keydown', function (event) {
     if (event.keyCode === 40) {
         if (parseInt(player.position.y) < canvas.height - 100) {
@@ -210,8 +218,10 @@ document.addEventListener('keydown', function (event) {
         }
     }
 });
+
+//Cursor paddle movement
+
 document.addEventListener("mousemove", e => {
     player.position.y = e.y - 60
 })
-
 
