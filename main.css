@@ -1,0 +1,40 @@
+body{
+
+}
+.log-uit{
+    float: right;
+    font-weight: bolder;
+    font-size: 40px;
+}
+
+.log-uit a{
+    text-decoration: none;
+    color: black;
+    font-family: fantasy;
+}
+
+button{
+    border-radius: 40px;
+    padding: 40px 150px;
+    margin-left: 300px;
+    margin-top: 375px;
+}
+
+button a{
+    font-size: 40px;
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    font-family: fantasy;
+}
+
+button a:hover{
+    transition: color 1s;
+    color: darkgrey;
+}
+
+.login{
+    text-align: center;
+    margin-top: 300px;
+    font-size: 20px;
+}
