@@ -90,12 +90,12 @@ class Ball {
 }
 
 function computerMove() {
-    let number = 2
-    computer.position.y = ball.position.y + number
-    console.log(number)
+
+    computer.position.y = compBall.position.y
 
 }
 
+let gains = 10
 function resetball() {
     ball.position.x = canvas.width / 2;
     ball.position.y = canvas.height / 2;
@@ -105,6 +105,10 @@ function resetball() {
 //     player.position.y = ball.position.y - 4
 // }
 
+function compBallMove() {
+    compBall.position.y = ball.position.y + gains
+
+}
 function ballMove() {
     ball.position.x = ball.position.x - ball.velocity.x
     ball.position.y = ball.position.y - ball.velocity.y
@@ -121,6 +125,7 @@ function ballMove() {
         player.position.y + player.height >= ball.position.y &&
         player.position.y <= ball.position.y + ball.height) {
         ball.velocity.x = -10
+        gains = gains + 0.5
     } else if (ball.position.y >= canvas.height) {
         ball.velocity.y = 7.5
     } else if (ball.position.y <= canvas.height - canvas.height) {
@@ -132,6 +137,7 @@ function ballMove() {
         ball.velocity.x = 10
     }
 }
+
 
 function drawtext(text, x, y, color) {
     ctx.fillStyle = color;
@@ -145,6 +151,7 @@ function game_loop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     player.update()
     ball.draw()
+    compBall.draw()
     computer.update()
     if (ball_start === true) {
         ballMove()
@@ -156,14 +163,19 @@ function game_loop() {
         }
     })
     computerMove()
-
+    compBallMove()
 
     // testMove()
 }
 
 const player = new Player_Paddle()
 const ball = new Ball()
+const compBall = new Ball()
 const computer = new Computer_Paddle()
+
+
+compBall.velocity.x = 3
+compBall.velocity.y = 8.5
 
 
 game_loop()
@@ -189,4 +201,8 @@ document.addEventListener('keydown', function (event) {
         }
     }
 });
+document.addEventListener("mousemove", e => {
+    player.position.y = (e.y / window.innerHeight) * 1350
+})
+
 
