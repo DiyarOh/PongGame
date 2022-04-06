@@ -1,12 +1,12 @@
 body{
 margin: 0;
-    background-color: darkgray;
+    background-color: rgba(126, 125, 125, 0.11);
 }
 .log-uit{
     float: right;
     margin-right: 20px;
     font-weight: bolder;
-    font-size: 40px;
+    font-size: 45px;
 }
 
 .log-uit a{

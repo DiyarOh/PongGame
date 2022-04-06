@@ -24,6 +24,6 @@ error_reporting(0);
 <button><a href="main.html">Singleplayer</a></button>
 <button><a href="multiplayer.html">Multiplayer</a></button>
 
-
+<!---->
 </body>
 </html>
