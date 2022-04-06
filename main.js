@@ -178,7 +178,7 @@ function game_loop() {
     ball.draw()
     compBall.draw2()
     computer.update()
-    computerMove()
+    // computerMove()
     compBallMove()
     if (ball_start === true) {
         ballMove()

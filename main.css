@@ -48,3 +48,29 @@ button a:hover{
 .login a{
     text-decoration: none;
 }
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    border: 3px solid black;
+}
+.u-lose {
+    width: 100%;
+    height: 40%;
+    margin-left: 28%;
+
+}
+.navigation{
+    margin-left: 38%;
+    font-size: 4em;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.navigation a, a:hover, a:visited, a:active {
+    color: inherit;
+    text-decoration: none;
+}
