@@ -10,7 +10,7 @@ let opponent_Paddle_Height = 120
 canvas.height = window.innerHeight - 100
 canvas.width = window.innerWidth - 100
 
-//Game loop
+//class creations all paddles / balls
 class Player_Paddle {
     constructor() {
         this.position = {
@@ -170,7 +170,7 @@ function drawtext(text, x, y, color) {
     ctx.fillText(text, x, y,);
 }
 
-
+//Game loop here its created
 function game_loop() {
     requestAnimationFrame(game_loop)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -178,7 +178,7 @@ function game_loop() {
     ball.draw()
     compBall.draw2()
     computer.update()
-    // computerMove()
+    computerMove()
     compBallMove()
     if (ball_start === true) {
         ballMove()
@@ -200,7 +200,7 @@ compBall.velocity.x = 3
 compBall.velocity.y = 8.5
 
 
-
+//Game loop here its called upon
 game_loop()
 // Paddle Movement by keybinds
 document.addEventListener('keydown', function (event) {
