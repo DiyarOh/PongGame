@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d")
 let ball_start = false
 
 //Paddle Stats
-let player_Paddle_Height = 1200
+let player_Paddle_Height = 120
 let opponent_Paddle_Height = 120
 canvas.height = window.innerHeight - 100
 canvas.width = window.innerWidth - 100
@@ -72,8 +72,8 @@ class Ball {
         }
 
         this.velocity = {
-            x: 2,
-            y: 7.5
+            x: 10,
+            y: 10
         }
         this.height = 30
         this.width = 30
@@ -103,6 +103,11 @@ function resetball() {
     gains = 10
 }
 
+function resetpaddle(){
+    player.position.y = canvas.height/2;
+    computer.position.y = canvas.height/2;
+}
+
 // function testMove(){
 //     player.position.y = ball.position.y - 4
 // }
@@ -115,6 +120,7 @@ function ballMove() {
     ball.position.x = ball.position.x - ball.velocity.x
     ball.position.y = ball.position.y - ball.velocity.y
     if (ball.position.x <= canvas.width - canvas.width) {
+        resetpaddle();
         resetball()
         computer.score.score++
         ball_start = false
@@ -122,6 +128,7 @@ function ballMove() {
         resetball()
         player.score.score++
         ball_start = false
+
     } else if (player.position.x + player.width >= ball.position.x &&
         player.position.x <= ball.position.x + ball.width &&
         player.position.y + player.height >= ball.position.y &&

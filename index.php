@@ -18,6 +18,6 @@ error_reporting(0);
 </head>
 <body>
 <a href="logout.php">Log Uit</a>
-
+<button><a href="main.html">Singleplayer</a></button>
 </body>
 </html>
