@@ -211,7 +211,7 @@ document.addEventListener('keydown', function (event) {
     }
 });
 document.addEventListener("mousemove", e => {
-    player.position.y = (e.y / window.innerHeight) * 1350
+    player.position.y = e.y - 60
 })
 
 
