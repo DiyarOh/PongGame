@@ -12,6 +12,7 @@ canvas.width = window.innerWidth - 100
 
 //class creations all paddles / balls
 class Player_Paddle {
+    // In here the most important parts of the class are stated (Position, Speed at which it moves, Scores, Width and Height)
     constructor() {
         this.position = {
             x: 10,
@@ -28,10 +29,14 @@ class Player_Paddle {
         this.height = player_Paddle_Height
     }
 
+    //This places it on the canvas
+
     draw() {
         ctx.fillStyle = "black"
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
+
+    //This updates it
 
     update() {
         this.draw()
@@ -61,11 +66,11 @@ class Computer_Paddle {
     }
 
 
-
     update() {
         this.draw()
     }
 }
+
 class Ball {
     constructor() {
         this.position = {
@@ -87,6 +92,7 @@ class Ball {
         drawtext(player.score.score, canvas.width / 4, canvas.height / 5, "BLACK")
         drawtext(computer.score.score, 3 * canvas.width / 4, canvas.height / 5, "BLACK")
     }
+
     draw2() {
         ctx.fillStyle = "transparent"
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
@@ -111,6 +117,7 @@ function resetball() {
 
     gains = 10
 }
+
 function resetpaddle() {
     player.position.y = canvas.height / 2;
     computer.position.y = canvas.height / 2;
@@ -118,7 +125,7 @@ function resetpaddle() {
 
 
 // Incase testing is neccessary lets player paddle move to win
-function testMove(){
+function testMove() {
     player.position.y = ball.position.y - 4
 }
 
@@ -149,8 +156,8 @@ function ballMove() {
         player.position.x <= ball.position.x + ball.width &&
         player.position.y + player.height >= ball.position.y &&
         player.position.y <= ball.position.y + ball.height) {
-        ball.velocity.x = -10
-        gains = gains + 0.5
+        ball.velocity.x = -20
+        gains = gains + Math.random() * 4 - Math.random() * 3
     } else if (ball.position.y >= canvas.height) {
         ball.velocity.y = 7.5
     } else if (ball.position.y <= canvas.height - canvas.height) {
@@ -159,7 +166,7 @@ function ballMove() {
         computer.position.x <= ball.position.x + ball.width &&
         computer.position.y + computer.height >= ball.position.y &&
         computer.position.y <= ball.position.y + ball.height) {
-        ball.velocity.x = 10
+        ball.velocity.x = 20
     }
 }
 
@@ -174,11 +181,13 @@ function drawtext(text, x, y, color) {
 function game_loop() {
     requestAnimationFrame(game_loop)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
+    if (computer.score.score < 10){
     player.update()
     ball.draw()
     compBall.draw2()
     computer.update()
     computerMove()
+        console.log(gains)
     compBallMove()
     if (ball_start === true) {
         ballMove()
@@ -188,9 +197,10 @@ function game_loop() {
             ball_start = true
         }
     })
-
+    }else {drawtext("U lost press on End Game", canvas.width / 4, canvas.height / 5, "BLACK")}
     // testMove()
 }
+
 //Creation of all components
 const player = new Player_Paddle()
 const ball = new Ball()

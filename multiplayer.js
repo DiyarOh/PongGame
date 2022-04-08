@@ -10,8 +10,9 @@ let opponent_Paddle_Height = 120
 canvas.height = window.innerHeight - 100
 canvas.width = window.innerWidth - 100
 
-//Game loop
+//All classes are made here (Paddle, Ball, Computer Paddle
 class Player_Paddle {
+    // In here the most important parts of the class are stated (Position, Speed at which it moves, Scores, Width and Height)
     constructor() {
         this.position = {
             x: 10,
@@ -28,11 +29,13 @@ class Player_Paddle {
         this.height = player_Paddle_Height
     }
 
+    //This places it on the canvas
     draw() {
         ctx.fillStyle = "black"
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 
+    //This updates it
     update() {
         this.draw()
     }
@@ -72,7 +75,6 @@ class Ball {
             x: canvas.width / 2 - 100,
             y: canvas.height / 2 - 40
         }
-
         this.velocity = {
             x: 10,
             y: 10
@@ -92,8 +94,6 @@ class Ball {
         ctx.fillStyle = "transparent"
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
-
-
 }
 
 
@@ -202,34 +202,34 @@ function newMovementFunction() {
     player.position.y = player.position.y + player.velocity.y
     computer.position.y = computer.position.y + computer.velocity.y
 
-    if (computer.position.y >= canvas.height - 100 || computer.position.y <= canvas.height - canvas.height){
+    if (computer.position.y >= canvas.height - 100 || computer.position.y <= canvas.height - canvas.height) {
         computer.velocity.y = 0
     }
-    if (player.position.y >= canvas.height - 100 || player.position.y <= canvas.height - canvas.height){
+    if (player.position.y >= canvas.height - 100 || player.position.y <= canvas.height - canvas.height) {
         player.velocity.y = 0
     }
 }
 
 
-// Paddle Movement by keybinds
+// Paddle Movement by keybinds each press just changes the direction of which the paddle is moving instead of having to be pressed continuously now
 document.addEventListener('keydown', function (event) {
     if (event.keyCode === 40) {
         if (parseInt(player.position.y) < canvas.height - 100) {
-            player.velocity.y = 10
+            computer.velocity.y = 10
         }
 
     } else if (event.keyCode === 38) {
         if (parseInt(player.position.y) > 0) {
-            player.velocity.y = -10
+            computer.velocity.y = -10
         }
     } else if (event.keyCode === 83) {
         if (parseInt(computer.position.y) < canvas.height - 100) {
-            computer.velocity.y = 10
+            player.velocity.y = 10
         }
 
     } else if (event.keyCode === 87) {
         if (parseInt(computer.position.y) > 0) {
-            computer.velocity.y = -10
+            player.velocity.y = -10
         }
     }
 });

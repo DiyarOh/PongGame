@@ -23,7 +23,8 @@ error_reporting(0);
 </div>
 <button><a href="main.html">Singleplayer</a></button>
 <button><a href="multiplayer.html">Multiplayer</a></button>
+<button><a href="highscore.php">Highscore</a></button>
 
-<!---->
+
 </body>
 </html>
