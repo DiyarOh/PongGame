@@ -2,6 +2,121 @@ body{
 margin: 0;
     background-color: rgba(126, 125, 125, 0.11);
 }
+
+.body1{
+    overflow: hidden;
+    background-color: black;
+}
+
+button{
+
+    border: none;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.HS{
+    position: fixed;
+    left: 43%;
+    top: 25%;
+    color: black;
+    border-radius: 10px;
+    font-size: 20px;
+    border: 4px solid white;
+}
+
+.HS, a{
+    text-decoration: none;
+    font-family: fantasy;
+    color: black;
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+.HS:hover{
+    color: gold;
+    transition: color 1s;
+
+}
+
+.SinglePlayer {
+    position: fixed;
+    left: 42%;
+    top: 50%;
+    color: black;
+    border-radius: 10px;
+    font-size: 20px;
+    border: 4px solid white;
+}
+
+.SinglePlayer, a{
+    text-decoration: none;
+    font-family: fantasy;
+    color: black;
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+.SinglePlayer:hover{
+    color: gold;
+    transition: color 1s;
+
+}
+
+.Mbutton{
+    position: fixed;
+    left: 70%;
+    top: 50%;
+    border: 4px solid white ;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.Mbutton, a{
+    text-decoration: none;
+    font-family: fantasy;
+    color: black;
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+.Mbutton a:hover{
+    color: gold;
+    transition: color 1s;
+
+}
+
+.Lbutton{
+    position: fixed;
+    left: 20%;
+    top: 50%;
+    color: black;
+    border-radius: 10px;
+    font-size: 20px;
+    border: 4px solid white;
+}
+
+.Lbutton, a{
+    text-decoration: none;
+    font-family: fantasy;
+    color: black;
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+.Lbutton a:hover{
+    color: gold;
+    transition: color 1s;}
+
+
+body{
+    margin: 0;
+    background-color: rgba(126, 125, 125, 0.11);
+}
 .log-uit{
     float: right;
     margin-right: 20px;
@@ -15,39 +130,9 @@ margin: 0;
     font-family: fantasy;
 }
 
-button {
-    border-radius: 40px;
-    padding: 40px 150px;
-    margin-left: 275px;
-    margin-top: 375px;
-    border: 5px solid black;
-    background-color: grey;
-}
 
-button a{
-    font-size: 40px;
-    text-decoration: none;
-    color: black;
-    font-weight: bolder;
-    font-family: fantasy;
-    letter-spacing: 5px;
-}
 
-button a:hover{
-    transition: color 1s;
-    color: white;
-}
 
-.login{
-    text-align: center;
-    margin-top: 300px;
-    font-size: 20px;
-    text-decoration: none;
-}
-
-.login a{
-    text-decoration: none;
-}
 
 .container{
     display: flex;
@@ -70,6 +155,53 @@ button a:hover{
     font-weight: bold;
 }
 
+.navigation a, a:hover, a:visited, a:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+
+.login{
+    text-align: center;
+    margin-top: 200px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.login a{
+    text-decoration: none;
+
+}
+
+input[type=text], input[type=password] {
+    width: 50%;
+    padding: 15px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+#button{
+    background-color: blue;
+    color: white;
+    font-size: 20px;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    font-weight: bolder;
+}
+
+.login label{
+    font-weight: bolder;
+    font-size: 25px;
+    color: black;
+
+}
 .navigation a, a:hover, a:visited, a:active {
     color: inherit;
     text-decoration: none;

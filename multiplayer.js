@@ -208,27 +208,41 @@ function newMovementFunction() {
     if (player.position.y >= canvas.height - 100 || player.position.y <= canvas.height - canvas.height) {
         player.velocity.y = 0
     }
+
+    if (player.position.y >=canvas.height - 100){
+        player.position.y = canvas.height - 100
+    }
+    if (player.position.y <=canvas.height - canvas.height){
+        player.position.y = canvas.height - canvas.height
+    }
+    if (computer.position.y >=canvas.height - 100){
+        computer.position.y = canvas.height - 100
+    }
+    if (computer.position.y <=canvas.height - canvas.height){
+        computer.position.y = canvas.height - canvas.height
+    }
+
 }
 
 
 // Paddle Movement by keybinds each press just changes the direction of which the paddle is moving instead of having to be pressed continuously now
 document.addEventListener('keydown', function (event) {
     if (event.keyCode === 40) {
-        if (parseInt(player.position.y) < canvas.height - 100) {
+        if (parseInt(player.position.y) <= canvas.height - 100) {
             computer.velocity.y = 10
         }
 
     } else if (event.keyCode === 38) {
-        if (parseInt(player.position.y) > 0) {
+        if (parseInt(player.position.y) >= 0) {
             computer.velocity.y = -10
         }
     } else if (event.keyCode === 83) {
-        if (parseInt(computer.position.y) < canvas.height - 100) {
+        if (parseInt(computer.position.y) <= canvas.height - 100) {
             player.velocity.y = 10
         }
 
     } else if (event.keyCode === 87) {
-        if (parseInt(computer.position.y) > 0) {
+        if (parseInt(computer.position.y) >= 0) {
             player.velocity.y = -10
         }
     }
